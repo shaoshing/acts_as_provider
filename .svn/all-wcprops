@@ -1,0 +1,45 @@
+K 26
+svn:wc:ra_dav:activity-url
+V 20
+/svn/wando/!svn/act/
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/wando/!svn/ver/1105/rails/vendor/plugins/acts_as_provider
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/wando/!svn/ver/1061/rails/vendor/plugins/acts_as_provider/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/wando/!svn/ver/1075/rails/vendor/plugins/acts_as_provider/init.rb
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/wando/!svn/ver/1061/rails/vendor/plugins/acts_as_provider/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/wando/!svn/ver/1061/rails/vendor/plugins/acts_as_provider/MIT-LICENSE
+END
+uninstall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/wando/!svn/ver/1061/rails/vendor/plugins/acts_as_provider/uninstall.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/wando/!svn/ver/1065/rails/vendor/plugins/acts_as_provider/README
+END
