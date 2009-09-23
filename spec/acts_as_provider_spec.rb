@@ -124,12 +124,21 @@ describe "ActsAsProvider" do
       end
       
       describe "Error" do
+        
+        it "当重复调用 acts_as_provider 时抛出异常" do
+          # lambda{
+          #   class Book
+          #     acts_as_provider do ; add.no_method ; end
+          #     acts_as_provider do ; add.duplicate ; end
+          #   end
+          # }.should raise_error(ActsAsProvider::Error)
+        end
+        
         it "当无法映射时抛出异常" do
           lambda{
             @book.provide(["invalid_field"])
           }.should raise_error(ActsAsProvider::Error)
         end
-        
         
         it "当因 no methods 无法映射时抛出异常" do
           lambda{

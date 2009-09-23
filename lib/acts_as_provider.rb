@@ -3,32 +3,31 @@ module ActsAsProvider
   
   def self.included o
     o.class_eval do
-      def self.provider ; @@aap_provider ; end
-      @@aap_provider = Provider.new
       extend ClassMethods
+      include InstanceMethods
     end
   end
   
   module ClassMethods
+    def provider 
+      @aap_provider ||= Provider.new
+    end
     def acts_as_provider &block
-      self.provider.describe &block
-      include InstanceMethods
+      provider.describe &block
     end
   end
   
   module InstanceMethods
     def provide fields
-      self.class.provider.provide self, (fields || [])
+      self.class.provider.provide( self, (fields || []) )
     end
   end
   
   class Provider
-    
     attr_accessor :sources
     
     def initialize
       @sources = []
-      @count = 0
     end
     
     def provide target, fields
@@ -36,17 +35,19 @@ module ActsAsProvider
       fields.each do |field|
         found = false
         @sources.each do |source|
-          if field =~ source[:matcher] && eval("target.#{source[:append_str]}respond_to? :#{$'}")
-            result[field] = eval("target.#{source[:append_str]}#{$'}")
-            found = true
-            break
+          begin
+            if field =~ source[:matcher] && eval("target.#{source[:append_str]}respond_to? :#{$'}")
+              result[field] = eval("target.#{source[:append_str]}#{$'}")
+              found = true
+              break
+            end
+          rescue NoMethodError
+            raise Error.new("#{target.class} can not provide [#{field}], because [#{source[:append_str]}#{$'}] is not exists!")
           end
         end
         raise Error.new("#{target.class} can not provide [#{field}], provider info：#{target.inspect} ") unless found
       end
       result
-    rescue NoMethodError
-      raise Error.new("#{target.class} can not provide [#{field}], provider info：#{target.inspect} ")
     end
     
     def describe &block
