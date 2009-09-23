@@ -30,15 +30,11 @@ You can apply this plugin like this:
 	
 	Controller:
 	result = Book.find(params[:id]).provide params[:fields]
-	
-	
-	
-
-
-Problems
-========
-
-1. user.provide(["destroy"])  #=>  Dangerous!! will destroy the record
 
 TODO
 =======
+1. improve security to prevent:
+	user.provide(["destroy"])  #=>  Dangerous!! will destroy the record
+2. support inheritant
+
+
