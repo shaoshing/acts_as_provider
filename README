@@ -5,10 +5,40 @@ ActsAsProvider
 Example
 =======
 
+	class Author < ActiveRecord::Base
+		has_one photo
+	end
+
+	class Book < ActiveRecord::Base
+		belongs_to 	author
+		acts_as_provider do
+			add.self
+			add.author
+			add.author.photo
+		end
+	end
+
+	book = Book.new
+	book.provide ["title", "content"] #=> same as { "title" => book.title, "content" => book.content }
+	book.provide ["title", "author_name"] #=> same as { "title" => book.title, "author_name" => book.author.name }
+	book.provide ["author_photo_file_type"] #=> same as { "author_photo_file_type" => book.author.photo.file_type }
+
+You can apply this plugin like this:
+	
+	Request:
+	get books/1?fields[]=title&fields[]=content
+	
+	Controller:
+	result = Book.find(params[:id]).provide params[:fields]
+	
+	
+	
+
 
 Problems
 ========
 
+1. user.provide(["destroy"])  #=>  Dangerous!! will destroy the record
 
 TODO
 =======
