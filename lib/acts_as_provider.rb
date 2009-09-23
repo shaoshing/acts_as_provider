@@ -41,8 +41,8 @@ module ActsAsProvider
               found = true
               break
             end
-          rescue NoMethodError
-            raise Error.new("#{target.class} can not provide [#{field}], because [#{source[:append_str]}#{$'}] is not exists!")
+          rescue Exception => e
+            raise Error.new("#{target.class} can not provide [#{field}] !\n Exception : #{e.message}。\n Provider info：#{target.inspect}。")
           end
         end
         raise Error.new("#{target.class} can not provide [#{field}], provider info：#{target.inspect} ") unless found
