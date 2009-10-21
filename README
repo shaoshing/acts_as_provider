@@ -37,4 +37,5 @@ TODO
 	user.provide(["destroy"])  #=>  Dangerous!! will destroy the record
 2. support inheritant
 
+3. improve performance with :include 
 

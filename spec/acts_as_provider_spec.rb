@@ -51,7 +51,7 @@ describe "ActsAsProvider" do
         add.self
         add.order_item
         add.order_item.pattern
-      end
+      end   
       @bp.sources[0].should == { :matcher => /^/                   , :append_str => "" }
       @bp.sources[1].should == { :matcher => /^order_item_/        , :append_str => "order_item." }
       @bp.sources[2].should == { :matcher => /^order_item_pattern_/, :append_str => "order_item.pattern." }

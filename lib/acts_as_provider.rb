@@ -52,11 +52,11 @@ module ActsAsProvider
     
     def describe &block
       self.instance_eval &block
-      add_source
+      add_previous_source
     end
-    
+        
     def add
-      add_source
+      add_previous_source
       @str = ""
       self
     end
@@ -64,7 +64,7 @@ module ActsAsProvider
     # matcher 用于匹配 field 是否满足条件
     # append_str 用于生成调用相应函数的代码
     #   具体使用参考 Provider.provide
-    def add_source
+    def add_previous_source
       return unless @str
       @sources << { 
         :matcher => /^#{ @str == "self." ? "" : @str.gsub(".","_")}/, 
